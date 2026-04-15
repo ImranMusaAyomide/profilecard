@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Card — Stage 1</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<article class="todo-card priority-high"
+  id="todo-card"
+  data-testid="test-todo-card"
+  aria-label="Todo item">
+
+  <div class="card-inner">
+
+    <!-- Top Row -->
+    <div class="top-row">
+      <div class="checkbox-wrap">
+        <input
+          type="checkbox"
+          class="custom-checkbox"
+          id="todo-checkbox"
+          data-testid="test-todo-checkbox"
+          aria-label="Mark todo as done"
+          tabindex="1"
+        />
+      </div>
+
+      <div class="title-area">
+        <!-- Priority Indicator -->
+        <div
+          class="priority-indicator pi-high"
+          id="priority-indicator"
+          data-testid="test-todo-priority-indicator"
+          aria-label="High priority"
+          role="img"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          <span id="priority-label">High</span>
+        </div>
+
+        <!-- Title -->
+        <div
+          class="todo-title"
+          id="todo-title"
+          data-testid="test-todo-title"
+        >Finish Web3 onboarding UI</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="card-actions">
+        <button
+          class="btn-icon"
+          id="edit-btn"
+          data-testid="test-todo-edit-button"
+          aria-label="Edit this todo"
+          tabindex="4"
+        >
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2.5l2 2M2 10l.5 2 2-.5L11 5 9 3 2 10z"/></svg>
+          <span>Edit</span>
+        </button>
+        <button
+          class="btn-icon danger"
+          id="delete-btn"
+          data-testid="test-todo-delete-button"
+          aria-label="Delete this todo"
+          tabindex="5"
+        >
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5h10M5 3.5V2.5h4v1M5.5 6v4M8.5 6v4M3 3.5l.8 8h6.4l.8-8"/></svg>
+          <span>Delete</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Meta Row -->
+    <div class="meta-row">
+      <span
+        class="tag-badge"
+        id="tag-display"
+        data-testid="test-todo-tag"
+      >Design</span>
+
+      <span
+        class="status-badge s-pending"
+        id="status-badge"
+        data-testid="test-todo-status"
+        aria-live="polite"
+      >Pending</span>
+
+      <span
+        class="time-display"
+        id="time-display"
+        data-testid="test-todo-time-remaining"
+        aria-live="polite"
+        aria-atomic="true"
+      ></span>
+
+      <span
+        class="overdue-badge"
+        id="overdue-indicator"
+        data-testid="test-todo-overdue-indicator"
+        role="alert"
+        aria-label="This todo is overdue"
+      >Overdue</span>
+    </div>
+
+    <!-- Status Row -->
+    <div class="status-row">
+      <label class="status-label" for="status-control">Status</label>
+      <select
+        id="status-control"
+        class="status-control"
+        data-testid="test-todo-status-control"
+        aria-label="Change todo status"
+        tabindex="2"
+      >
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Done">Done</option>
+      </select>
+    </div>
+
+    <!-- Expand Toggle -->
+    <button
+      class="expand-btn"
+      id="expand-toggle"
+      data-testid="test-todo-expand-toggle"
+      aria-expanded="false"
+      aria-controls="collapsible-section"
+      tabindex="3"
+    >
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 4l4 4 4-4"/>
+      </svg>
+      <span id="expand-label">Show description</span>
+    </button>
+
+    <!-- Collapsible Section -->
+    <div
+      id="collapsible-section"
+      class="collapsible-section"
+      data-testid="test-todo-collapsible-section"
+      role="region"
+      aria-labelledby="expand-toggle"
+    >
+      <p
+        class="desc-text"
+        id="todo-description"
+        data-testid="test-todo-description"
+      ></p>
+    </div>
+
+    <!-- Edit Form -->
+    <div
+      id="edit-form"
+      class="edit-form-container"
+      data-testid="test-todo-edit-form"
+      role="form"
+      aria-label="Edit todo"
+    >
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label class="form-label" for="edit-title-input">Title</label>
+          <input
+            type="text"
+            class="form-input"
+            id="edit-title-input"
+            data-testid="test-todo-edit-title-input"
+            placeholder="Todo title"
+            tabindex="10"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="edit-desc-input">Description</label>
+          <textarea
+            class="form-input"
+            id="edit-desc-input"
+            data-testid="test-todo-edit-description-input"
+            placeholder="Add a description…"
+            tabindex="11"
+          ></textarea>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="edit-priority-input">Priority</label>
+            <select
+              class="form-input"
+              id="edit-priority-input"
+              data-testid="test-todo-edit-priority-select"
+              tabindex="12"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-due-input">Due Date</label>
+            <input
+              type="datetime-local"
+              class="form-input"
+              id="edit-due-input"
+              data-testid="test-todo-edit-due-date-input"
+              tabindex="13"
+            />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            class="btn-cancel"
+            id="cancel-btn"
+            data-testid="test-todo-cancel-button"
+            type="button"
+            tabindex="15"
+          >Cancel</button>
+          <button
+            class="btn-save"
+            id="save-btn"
+            data-testid="test-todo-save-button"
+            type="button"
+            tabindex="14"
+          >Save changes</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /card-inner -->
+</article>
+
+<script src="script.js"></script>
+</body>
+</html>
